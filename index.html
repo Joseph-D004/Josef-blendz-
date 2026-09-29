@@ -1,1266 +1,807 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Josef Blendz | Premium Barber</title>
-
-    <meta name="description"
-          content="Josef Blendz — Premium barbering, clean fades and modern grooming.">
-
-    <style>
-        /* =========================
-           RESET
-        ========================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #080808;
-            color: #ffffff;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        img {
-            width: 100%;
-            display: block;
-        }
-
-        /* =========================
-           VARIABLES
-        ========================= */
-
-        :root {
-            --gold: #d4af37;
-            --gold-light: #f0d77b;
-            --dark: #080808;
-            --dark-2: #111111;
-            --gray: #aaaaaa;
-            --white: #ffffff;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(8, 8, 8, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: auto;
-            padding: 18px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        .logo span {
-            color: var(--gold);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #ddd;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-
-        .menu-btn {
-            display: none;
-            font-size: 28px;
-            cursor: pointer;
-            color: var(--gold);
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            background:
-                linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.9)),
-                radial-gradient(circle at 70% 40%, rgba(212,175,55,0.15), transparent 35%);
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            width: 100%;
-            margin: auto;
-            padding: 120px 25px 60px;
-        }
-
-        .hero-small {
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 7rem);
-            line-height: 0.95;
-            max-width: 850px;
-            margin-bottom: 25px;
-        }
-
-        .hero h1 span {
-            color: var(--gold);
-        }
-
-        .hero p {
-            max-width: 600px;
-            color: #bbb;
-            font-size: 1.1rem;
-            margin-bottom: 35px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-primary {
-            background: var(--gold);
-            color: #000;
-        }
-
-        .btn-primary:hover {
-            background: var(--gold-light);
-            transform: translateY(-3px);
-        }
-
-        .btn-outline {
-            border: 1px solid #555;
-            color: white;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        /* =========================
-           GENERAL SECTIONS
-        ========================= */
-
-        section {
-            padding: 100px 25px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title span {
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.8rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.8rem;
-            margin-top: 8px;
-        }
-
-        .section-title p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 15px auto 0;
-        }
-
-        /* =========================
-           SERVICES
-        ========================= */
-
-        #services {
-            background: #0d0d0d;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .service-card {
-            background: #141414;
-            border: 1px solid #222;
-            padding: 35px 25px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(212,175,55,0.6);
-        }
-
-        .service-icon {
-            font-size: 35px;
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            margin-bottom: 10px;
-        }
-
-        .service-card p {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-
-        .price {
-            color: var(--gold);
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        /* =========================
-           PORTFOLIO
-        ========================= */
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-
-        .portfolio-item {
-            height: 350px;
-            overflow: hidden;
-            border-radius: 8px;
-            background: #151515;
-            position: relative;
-        }
-
-        .portfolio-item img {
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-
-        .portfolio-item:hover img {
-            transform: scale(1.08);
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 25px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-        }
-
-        .portfolio-overlay h3 {
-            color: white;
-        }
-
-        .portfolio-overlay p {
-            color: var(--gold);
-        }
-
-        /* =========================
-           ABOUT
-        ========================= */
-
-        #about {
-            background: #0d0d0d;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            height: 500px;
-            background:
-                linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5)),
-                url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1000&q=80")
-                center/cover;
-            border-radius: 10px;
-        }
-
-        .about-text span {
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.8rem;
-        }
-
-        .about-text h2 {
-            font-size: 3rem;
-            margin: 12px 0 20px;
-        }
-
-        .about-text p {
-            color: #aaa;
-            margin-bottom: 20px;
-        }
-
-        .stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 30px;
-        }
-
-        .stat h3 {
-            color: var(--gold);
-            font-size: 2rem;
-        }
-
-        .stat p {
-            font-size: 0.85rem;
-        }
-
-        /* =========================
-           TESTIMONIAL
-        ========================= */
-
-        .testimonial {
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-            padding: 45px;
-            border: 1px solid #222;
-            background: #111;
-            border-radius: 10px;
-        }
-
-        .stars {
-            color: var(--gold);
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-        }
-
-        .testimonial p {
-            color: #ccc;
-            font-size: 1.1rem;
-            font-style: italic;
-        }
-
-        .testimonial h4 {
-            margin-top: 20px;
-        }
-
-        /* =========================
-           CONTACT
-        ========================= */
-
-        #contact {
-            background: #0d0d0d;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-
-        .contact-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .contact-info p {
-            color: #aaa;
-            margin-bottom: 25px;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .contact-detail {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .contact-detail span:first-child {
-            font-size: 22px;
-        }
-
-        .contact-form {
-            background: #151515;
-            padding: 30px;
-            border-radius: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 7px;
-            font-size: 0.9rem;
-            color: #bbb;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #333;
-            background: #0d0d0d;
-            color: white;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--gold);
-        }
-
-        textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            padding: 35px 25px;
-            text-align: center;
-            border-top: 1px solid #222;
-            color: #777;
-        }
-
-        footer span {
-            color: var(--gold);
-        }
-
-        /* =========================
-           WHATSAPP
-        ========================= */
-
-        .whatsapp {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            background: #25D366;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 27px;
-            z-index: 999;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-            transition: 0.3s;
-        }
-
-        .whatsapp:hover {
-            transform: scale(1.1);
-        }
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 900px) {
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-image {
-                height: 400px;
-            }
-        }
-
-        @media (max-width: 650px) {
-
-            .nav-links {
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: #0b0b0b;
-                flex-direction: column;
-                align-items: center;
-                padding: 25px;
-                display: none;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-btn {
-                display: block;
-            }
-
-            .services-grid,
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 3.7rem;
-            }
-
-            .about-text h2 {
-                font-size: 2.3rem;
-            }
-
-            .stats {
-                gap: 20px;
-            }
-
-            .portfolio-item {
-                height: 400px;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Josef Blendz | Barber in Gombe</title>
+<meta name="description" content="Skin fades, low and mid fades, beard grooming, hair designs and more in Gombe. Book your cut on WhatsApp.">
+<meta name="theme-color" content="#0F1720">
+<meta property="og:title" content="Josef Blendz | Barber in Gombe">
+<meta property="og:description" content="Clean fades and sharp lines. See prices and book your cut on WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://joseph-d004.github.io/Josef-blendz-/hero.jpg">
+<link rel="icon" href="Joseflogo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BarberShop",
+  "name": "Josef Blendz",
+  "image": "https://joseph-d004.github.io/Josef-blendz-/hero.jpg",
+  "address": { "@type": "PostalAddress", "addressLocality": "Gombe", "addressCountry": "NG" },
+  "priceRange": "₦1,000+"
+}
+</script>
+
+<style>
+  :root {
+    --ink: #0F1720;
+    --ink-2: #17212C;
+    --clipper: #F2F3F1;
+    --red: #C8232D;
+    --blue: #24509F;
+    --text-dark: #1B232C;
+    --muted-dark: #56616C;
+    --muted-light: #A9B4BF;
+    --line-dark: #C9CFD4;
+    --line-light: #2C3947;
+
+    --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+    --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body {
+    margin: 0;
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--clipper);
+    background: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  h1, h2, h3, h4, p { margin: 0; }
+
+  :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+
+  .wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 48px; padding: 0 26px;
+    font: 700 1rem/1 var(--body);
+    text-decoration: none; text-align: center;
+    border: 2px solid transparent; border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .15s, color .15s, border-color .15s;
+  }
+  .btn-red { background: var(--red); color: #fff; }
+  .btn-red:hover { background: #a71b24; }
+  .btn-outline { border-color: var(--clipper); color: var(--clipper); background: transparent; }
+  .btn-outline:hover { background: var(--clipper); color: var(--ink); }
+  .btn-small { min-height: 42px; padding: 0 18px; font-size: .95rem; }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--ink);
+  }
+  .site-header::after {
+    content: ""; display: block; height: 5px;
+    background: repeating-linear-gradient(-45deg,
+      var(--red) 0 10px, #fff 10px 20px, var(--blue) 20px 30px, #fff 30px 40px);
+  }
+  .header-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 68px; }
+  .wordmark {
+    display: flex; align-items: center; gap: 10px;
+    font: 900 1.7rem/1 var(--display);
+    letter-spacing: .02em; text-decoration: none; text-transform: uppercase;
+  }
+  .wordmark-logo {
+    height: 44px; width: auto; max-width: 52px; object-fit: contain;
+    background: var(--clipper); padding: 6px; border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.35);
+  }
+  .header-actions { display: flex; align-items: center; gap: 10px; }
+  .nav-toggle {
+    width: 44px; height: 44px; display: inline-grid; place-content: center; gap: 5px;
+    background: transparent; border: 2px solid var(--line-light); border-radius: 4px; cursor: pointer;
+  }
+  .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--clipper); }
+  .site-nav { display: none; }
+  .site-nav.open {
+    display: block; position: absolute; left: 0; right: 0; top: 68px;
+    background: var(--ink); border-bottom: 1px solid var(--line-light); padding: 8px 20px 18px;
+  }
+  .site-nav ul { list-style: none; margin: 0; padding: 0; }
+  .site-nav a {
+    display: block; padding: 14px 0; text-decoration: none; font-weight: 600;
+    border-bottom: 1px solid var(--line-light);
+  }
+  .site-nav a:hover { color: #fff; text-decoration: underline; text-underline-offset: 6px; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 48px 0 0; }
+  .hero-grid { display: grid; gap: 36px; align-items: end; }
+  .hero h1 {
+    font: 900 clamp(3.6rem, 14vw, 8rem)/.9 var(--display);
+    letter-spacing: -.005em;
+  }
+  .hero-lead { margin-top: 22px; max-width: 34ch; font-size: 1.2rem; color: var(--muted-light); }
+  .hero-cta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-place { margin-top: 22px; color: var(--muted-light); font-size: .98rem; }
+
+  .hero-photo {
+    position: relative; overflow: hidden;
+    aspect-ratio: 4 / 5; max-height: 640px; width: 100%;
+    background: var(--ink-2);
+  }
+  .hero-photo img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center 25%;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  }
+  /* The one animated moment: the photo fades in from the bottom up, like a fade being cut. */
+  .hero-photo::after {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 200%;
+    background: linear-gradient(to bottom, var(--ink) 0 50%, transparent 100%);
+    animation: reveal 1.6s .2s cubic-bezier(.6, .1, .2, 1) forwards;
+    pointer-events: none;
+  }
+  @keyframes reveal { to { transform: translateY(-100%); } }
+
+  /* The page itself fades: dark to light, like a skin fade. */
+  .fade-down { height: 130px; background: linear-gradient(to bottom, var(--ink), var(--clipper)); }
+  .fade-up   { height: 110px; background: linear-gradient(to bottom, var(--clipper), var(--ink)); }
+
+  /* ---------- Sections ---------- */
+  .section { padding: 64px 0; }
+  .light { background: var(--clipper); color: var(--text-dark); }
+  .light :focus-visible { outline-color: var(--red); }
+  .section-title { font: 800 clamp(2.2rem, 7vw, 3.4rem)/1 var(--display); }
+  .section-intro { margin-top: 12px; max-width: 46ch; color: var(--muted-dark); }
+  .dark .section-intro { color: var(--muted-light); }
+
+  /* ---------- Services (price list) ---------- */
+  .menu { margin-top: 36px; display: grid; gap: 40px; }
+  .menu-group h3 {
+    font: 800 1.5rem/1 var(--display);
+    padding-bottom: 10px; border-bottom: 3px solid var(--text-dark);
+  }
+  .menu-list { list-style: none; margin: 0; padding: 0; }
+  .menu-item { padding: 18px 0; border-bottom: 1px solid var(--line-dark); }
+  .menu-head { display: flex; align-items: baseline; gap: 10px; }
+  .menu-head h4 { font: 700 1.1rem/1.3 var(--body); }
+  .leader { flex: 1; min-width: 16px; border-bottom: 2px dotted #98A1A9; transform: translateY(-4px); }
+  .price { font-weight: 700; font-size: 1.1rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .menu-item p { margin-top: 4px; color: var(--muted-dark); font-size: .98rem; max-width: 48ch; }
+  .menu-note { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+  .menu-note p { color: var(--muted-dark); }
+
+  /* ---------- Work ---------- */
+  .gallery-filters { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .gf-tab {
+    min-height: 40px; padding: 0 16px; cursor: pointer;
+    font: 600 .92rem var(--body); color: var(--text-dark);
+    background: transparent; border: 2px solid var(--line-dark); border-radius: 999px;
+  }
+  .gf-tab[aria-pressed="true"] { background: var(--text-dark); color: var(--clipper); border-color: var(--text-dark); }
+  .gallery { margin-top: 32px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .shot.gf-hide { display: none; }
+  .shot {
+    padding: 0; border: 0; background: #d9dcdf; cursor: zoom-in; overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+  .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s; }
+  .shot:hover img { transform: scale(1.04); }
+
+  /* ---------- Before / after ---------- */
+  .ba { margin-top: 32px; max-width: 520px; }
+  .ba h3 { font: 800 1.5rem/1 var(--display); }
+  .ba-tabs { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .ba-tab {
+    min-height: 44px; padding: 0 18px; cursor: pointer;
+    font: 600 .95rem var(--body); color: var(--text-dark);
+    background: transparent; border: 2px solid var(--text-dark); border-radius: 4px;
+  }
+  .ba-tab[aria-pressed="true"] { background: var(--text-dark); color: var(--clipper); }
+  .ba-stage {
+    --pos: 50%;
+    position: relative; margin-top: 14px; overflow: hidden;
+    aspect-ratio: 4 / 5; background: #d9dcdf; user-select: none; touch-action: pan-y;
+  }
+  .ba-stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ba-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+  .ba-line {
+    position: absolute; top: 0; bottom: 0; left: var(--pos); width: 3px; margin-left: -1.5px;
+    background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.25); pointer-events: none;
+  }
+  .ba-knob {
+    position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px;
+    border-radius: 50%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.35);
+    display: grid; place-content: center; color: var(--text-dark); font-weight: 800; font-size: 1rem;
+  }
+  .ba-tag {
+    position: absolute; top: 12px; padding: 4px 10px; border-radius: 3px;
+    font: 700 .85rem var(--body); color: #fff; background: rgba(15,23,32,.8); pointer-events: none;
+  }
+  .ba-tag.b { left: 12px; }
+  .ba-tag.a { right: 12px; }
+  .ba-range {
+    position: absolute; inset: 0; width: 100%; height: 100%; margin: 0;
+    opacity: 0; cursor: ew-resize; -webkit-appearance: none; appearance: none;
+  }
+  .ba-stage:focus-within { outline: 3px solid var(--red); outline-offset: 3px; }
+  .ba-hint { margin-top: 10px; color: var(--muted-dark); font-size: .95rem; }
+
+  dialog.lightbox {
+    padding: 0; border: 0; background: transparent; max-width: 100vw; max-height: 100vh;
+    width: min(92vw, 720px);
+  }
+  dialog.lightbox::backdrop { background: rgba(8, 12, 17, .88); }
+  .lightbox img { width: 100%; max-height: 82vh; object-fit: contain; }
+  .lightbox .btn { margin-top: 12px; width: 100%; }
+
+  /* ---------- About + steps ---------- */
+  .about-grid { display: grid; gap: 48px; }
+  .about-copy p { margin-top: 18px; color: var(--muted-light); max-width: 52ch; }
+  .about-copy p:first-of-type { margin-top: 20px; color: var(--clipper); font-size: 1.2rem; }
+  .steps { list-style: none; margin: 28px 0 0; padding: 0; counter-reset: step; }
+  .steps li {
+    counter-increment: step; position: relative;
+    padding: 0 0 26px 62px;
+  }
+  .steps li:not(:last-child)::after {
+    content: ""; position: absolute; left: 19px; top: 44px; bottom: 6px;
+    border-left: 2px dashed var(--line-light);
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: 0; width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-content: center;
+    background: var(--red); color: #fff; font: 800 1.2rem/1 var(--display);
+  }
+  .steps h3 { font: 700 1.1rem/1.4 var(--body); }
+  .steps p { color: var(--muted-light); font-size: .98rem; }
+
+  /* ---------- Booking ---------- */
+  .book { background: var(--ink-2); }
+  .book-grid { display: grid; gap: 40px; }
+  .contact-list { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 16px; }
+  .contact-list dt, .contact-list .k { display: block; font-size: .85rem; color: var(--muted-light); }
+  .contact-list a { font-weight: 600; }
+  form.booking { display: grid; gap: 18px; }
+  .field { display: grid; gap: 6px; }
+  .field label { font-weight: 600; font-size: .95rem; }
+  .field .opt { font-weight: 400; color: var(--muted-light); }
+  .field input, .field select, .field textarea {
+    width: 100%; min-height: 50px; padding: 12px 14px;
+    font: 400 1rem var(--body); color: var(--clipper);
+    background: var(--ink); border: 2px solid var(--line-light); border-radius: 4px;
+  }
+  .field textarea { min-height: 96px; resize: vertical; }
+  .field input::placeholder, .field textarea::placeholder { color: #7E8A96; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--clipper); }
+  .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+  .form-hint { font-size: .9rem; color: var(--muted-light); }
+
+  /* ---------- Footer ---------- */
+  .site-footer { background: var(--ink); border-top: 1px solid var(--line-light); padding: 28px 0 40px; color: var(--muted-light); font-size: .95rem; }
+  .footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
+  .footer-row a { text-underline-offset: 4px; }
+
+  /* ---------- Larger screens ---------- */
+  @media (min-width: 760px) {
+    .nav-toggle { display: none; }
+    .site-nav, .site-nav.open {
+      display: block; position: static; padding: 0; border: 0; background: none;
+    }
+    .site-nav ul { display: flex; gap: 28px; }
+    .site-nav a { padding: 8px 0; border: 0; font-size: .98rem; }
+    .header-row { gap: 32px; }
+    .site-nav { margin-left: auto; }
+
+    .hero { padding-top: 72px; }
+    .hero-grid { grid-template-columns: 1.15fr .85fr; gap: 56px; }
+    .hero-photo { aspect-ratio: 4 / 5; }
+
+    .section { padding: 96px 0; }
+    .menu { grid-template-columns: repeat(2, 1fr); gap: 48px 64px; }
+    .menu-group.wide { grid-column: 1 / -1; }
+    .gallery { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .about-grid { grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .book-grid { grid-template-columns: .8fr 1.2fr; gap: 72px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-photo::after { animation: none; transform: translateY(-100%); }
+    .shot img { transition: none; }
+  }
+</style>
 </head>
 
 <body>
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="wordmark" href="#top" aria-label="Josef Blendz, back to top">
+      <img src="Joseflogo.png" alt="" class="wordmark-logo">
+      <span>Josef Blendz</span>
+    </a>
 
-<header>
-    <nav>
-
-        <a href="#home" class="logo">
-            <img src="Joseflogo.png" alt="Josef Blendz Logo">
-        </a>
-
-        <div class="menu-btn" onclick="toggleMenu()">
-            ☰
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#book">Book</a></li>
+      </ul>
     </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-red btn-small" href="#book" data-wa>Book now</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
 </header>
 
+<main id="top">
 
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero" id="home">
-
-    <div class="hero-content">
-
-        <div class="hero-small">
-            Premium Barbering
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 id="hero-title">Clean fades.<br>Sharp lines.</h1>
+        <p class="hero-lead">Barber in Gombe. Every cut is shaped around your head, your hair and the look you want.</p>
+        <div class="hero-cta">
+          <a class="btn btn-red" href="#book" data-wa>Book on WhatsApp</a>
+          <a class="btn btn-outline" href="#work">See the work</a>
         </div>
+        <p class="hero-place" id="hero-place"></p>
+      </div>
 
-        <h1>
-            YOUR STYLE.<br>
-            <span>YOUR SIGNATURE.</span>
-        </h1>
-
-        <p>
-            Precision fades, clean cuts and premium grooming
-            crafted to make you look your best.
-        </p>
-
-        <div class="buttons">
-
-            <a href="#contact" class="btn btn-primary">
-                Book an Appointment
-            </a>
-
-            <a href="#portfolio" class="btn btn-outline">
-                View My Work
-            </a>
-
-        </div>
-
+      <div class="hero-photo">
+        <img src="hero.jpg" alt="A fresh fade by Josef Blendz" fetchpriority="high">
+      </div>
     </div>
+  </section>
 
-</section>
+  <div class="fade-down" aria-hidden="true"></div>
 
+  <!-- SERVICES -->
+  <section class="section light" id="services" style="padding-top: 24px;" aria-labelledby="services-title">
+    <div class="wrap">
+      <h2 class="section-title" id="services-title">Services and prices</h2>
+      <p class="section-intro">Every service starts from ₦1,000. Message on WhatsApp for the exact price of your service or style.</p>
 
-<!-- =========================
-     SERVICES
-========================= -->
-
-<section id="services">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <span>What I Do</span>
-
-            <h2>My Services</h2>
-
-            <p>
-                Clean work. Sharp details. No shortcuts.
-            </p>
-
+      <div class="menu">
+        <div class="menu-group">
+          <h3>Cuts</h3>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-head"><h4>Skin fade</h4></div>
+              <p>Smooth, clean blend from skin up to your length.</p>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><h4>Low or mid fade</h4></div>
+              <p>Fade height matched to your head shape and style.</p>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><h4>Hair design</h4></div>
+              <p>Creative lines and custom patterns. Price depends on the design.</p>
+            </li>
+          </ul>
         </div>
 
-
-        <div class="services-grid">
-
-            <div class="service-card">
-
-                <div class="service-icon">✂️</div>
-
-                <h3>Skin Fade</h3>
-
-                <p>
-                    Clean, smooth and properly blended skin fade.
-                </p>
-
-                <div class="price">
-                    ₦5,000
-                </div>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">💈</div>
-
-                <h3>Low / Mid Fade</h3>
-
-                <p>
-                    Modern fades customized to your head shape
-                    and personal style.
-                </p>
-
-                <div class="price">
-                    ₦4,000
-                </div>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">🔥</div>
-
-                <h3>Haircut + Beard</h3>
-
-                <p>
-                    Full haircut and beard grooming for a complete
-                    transformation.
-                </p>
-
-                <div class="price">
-                    ₦6,000
-                </div>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">🪒</div>
-
-                <h3>Beard Grooming</h3>
-
-                <p>
-                    Sharp beard shaping, lining and finishing.
-                </p>
-
-                <div class="price">
-                    ₦2,500
-                </div>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">⚡</div>
-
-                <h3>Hair Design</h3>
-
-                <p>
-                    Creative lines and custom designs.
-                </p>
-
-                <div class="price">
-                    ₦2,000+
-                </div>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">👑</div>
-
-                <h3>Premium Package</h3>
-
-                <p>
-                    Haircut, beard grooming and finishing touches.
-                </p>
-
-                <div class="price">
-                    ₦8,000
-                </div>
-
-            </div>
-
+        <div class="menu-group">
+          <h3>Beard</h3>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-head"><h4>Beard grooming</h4></div>
+              <p>Shaping, lining and a sharp finish.</p>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><h4>Haircut and beard</h4></div>
+              <p>Full haircut and beard grooming in one visit.</p>
+            </li>
+          </ul>
         </div>
 
+        <div class="menu-group">
+          <h3>Color</h3>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-head"><h4>Colored dyeing</h4></div>
+              <p>Full or partial color. Price depends on the shade and how much hair is covered.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="menu-group">
+          <h3>Home service</h3>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-head"><h4>Any service, at your location</h4></div>
+              <p>Service price above, plus a travel fee based on how far you are from the shop. Message your location for a quote.</p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="menu-note">
+        <a class="btn btn-red" href="#book" data-wa>Book a service</a>
+        <p>Not sure which one? Message and ask.</p>
+      </div>
     </div>
+  </section>
 
-</section>
+  <!-- WORK -->
+  <section class="section light" id="work" style="padding-top: 0;" aria-labelledby="work-title">
+    <div class="wrap">
+      <h2 class="section-title" id="work-title">Recent work</h2>
+      <p class="section-intro">Tap a photo to see it larger.</p>
 
-
-<!-- =========================
-     PORTFOLIO
-========================= -->
-
-<section id="portfolio">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <span>The Work</span>
-
-            <h2>My Portfolio</h2>
-
-            <p>
-                A few examples of clean transformations.
-            </p>
-
+      <div class="ba" id="ba">
+        <h3>Before and after</h3>
+        <div class="ba-tabs" id="ba-cases" role="group" aria-label="Choose a transformation"></div>
+        <div class="ba-tabs" id="ba-angles" role="group" aria-label="Choose an angle"></div>
+        <div class="ba-stage" id="ba-stage">
+          <img class="ba-after" id="ba-after" src="after-front.jpg" alt="After: finished cut, front view">
+          <img class="ba-before" id="ba-before" src="before-front.jpg" alt="Before: front view">
+          <span class="ba-tag b">Before</span>
+          <span class="ba-tag a">After</span>
+          <div class="ba-line" aria-hidden="true"><div class="ba-knob">&harr;</div></div>
+          <input class="ba-range" id="ba-range" type="range" min="0" max="100" value="50" aria-label="Slide to compare before and after">
         </div>
+        <p class="ba-hint">Drag the line to compare.</p>
+      </div>
 
+      <!--
+        Set each photo's real style below by changing data-category to:
+        fade, design, beard, or color. Add more <button class="shot"> the same way for new photos.
+        The 6 new "work" photos below are guessed as "fade" for now — change data-category
+        on each to match what it actually shows.
+      -->
+      <div class="gallery-filters" id="gallery-filters" role="group" aria-label="Filter work by style">
+        <button class="gf-tab" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="gf-tab" type="button" data-filter="fade" aria-pressed="false">Fades</button>
+        <button class="gf-tab" type="button" data-filter="design" aria-pressed="false">Designs</button>
+        <button class="gf-tab" type="button" data-filter="beard" aria-pressed="false">Beard</button>
+        <button class="gf-tab" type="button" data-filter="color" aria-pressed="false">Color</button>
+      </div>
 
-        <div class="portfolio-grid">
+      <div class="gallery" style="margin-top: 20px;">
+        <button class="shot" type="button" data-category="fade" data-full="work1-a.png"><img src="work1-a.png" alt="Haircut by Josef Blendz, work 1a" loading="lazy"></button>
+        <button class="shot" type="button" data-category="fade" data-full="work1-b.png"><img src="work1-b.png" alt="Haircut by Josef Blendz, work 1b" loading="lazy"></button>
+        <button class="shot" type="button" data-category="fade" data-full="work2-a.png"><img src="work2-a.png" alt="Haircut by Josef Blendz, work 2a" loading="lazy"></button>
+        <button class="shot" type="button" data-category="fade" data-full="work2-b.png"><img src="work2-b.png" alt="Haircut by Josef Blendz, work 2b" loading="lazy"></button>
+        <button class="shot" type="button" data-category="fade" data-full="work3-a.png"><img src="work3-a.png" alt="Haircut by Josef Blendz, work 3a" loading="lazy"></button>
+        <button class="shot" type="button" data-category="fade" data-full="work3-b.png"><img src="work3-b.png" alt="Haircut by Josef Blendz, work 3b" loading="lazy"></button>
+      </div>
+      <p class="form-hint" id="gallery-empty" hidden>No photos in this category yet.</p>
 
-            <div class="portfolio-grid">
-
-    <div class="portfolio-item">
-        <img src="Cut1.jpg" alt="Josef Blendz haircut">
-        <div class="portfolio-overlay">
-            <h3>Precision Fade</h3>
-            <p>Clean & sharp finish</p>
-        </div>
+      <!--
+        REAL CLIENT REVIEWS: add them here once you have them.
+        Copy a screenshot of a WhatsApp or Instagram compliment (with permission)
+        or write the client's first name and what they said. Real beats generic.
+      -->
     </div>
+  </section>
 
-    <div class="portfolio-item">
-        <img src="Cut2.jpg" alt="Josef Blendz haircut">
-        <div class="portfolio-overlay">
-            <h3>Premium Cut</h3>
-            <p>Clean, modern finish</p>
-        </div>
+  <div class="fade-up" aria-hidden="true"></div>
+
+  <!-- ABOUT + HOW IT WORKS -->
+  <section class="section" id="about" style="padding-top: 24px;" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <div class="about-copy">
+        <h2 class="section-title" id="about-title">About Josef Blendz</h2>
+        <p>Josef Blendz is all about clean cuts, sharp details, and a finish that speaks for itself.</p>
+        <p>With years of experience behind the clippers, I focus on delivering precise fades, clean line-ups, well-crafted styles, and a finish tailored to each client.</p>
+        <p>Every haircut is approached with attention to detail&mdash;from the blend to the edges&mdash;because the little things make the difference.</p>
+        <p>Whether you want a fresh fade, a sharp transformation, or your regular clean-up, Josef Blendz is where quality meets consistency.</p>
+        <p><strong>Clean. Sharp. Fresh. Every time.</strong></p>
+      </div>
+
+      <div>
+        <h2 class="section-title">How booking works</h2>
+        <ol class="steps">
+          <li>
+            <h3>Send a message</h3>
+            <p>Tell me the service you want and a day that suits you.</p>
+          </li>
+          <li>
+            <h3>Get your time</h3>
+            <p>You get a reply confirming your slot.</p>
+          </li>
+          <li>
+            <h3>Come to the shop</h3>
+            <p>Arrive a few minutes early and sit down for your cut.</p>
+          </li>
+        </ol>
+      </div>
     </div>
+  </section>
 
-    <div class="portfolio-item">
-        <img src="Cut3.jpg" alt="Josef Blendz haircut">
-        <div class="portfolio-overlay">
-            <h3>Signature Style</h3>
-            <p>Precision work</p>
+  <!-- BOOKING -->
+  <section class="section book" id="book" aria-labelledby="book-title">
+    <div class="wrap book-grid">
+      <div>
+        <h2 class="section-title" id="book-title">Book your cut</h2>
+        <p class="section-intro">Fill this in and it opens WhatsApp with your message ready to send.</p>
+
+        <ul class="contact-list">
+          <li id="row-address"><span class="k">Where</span><span id="shop-address"></span></li>
+          <li id="row-hours" hidden><span class="k">Hours</span><span id="shop-hours"></span></li>
+          <li id="row-map" hidden><span class="k">Directions</span><a id="shop-map" href="#" target="_blank" rel="noopener">Open in Google Maps</a></li>
+          <li><span class="k">WhatsApp</span><a href="#book" data-wa>Message on WhatsApp</a></li>
+          <li><span class="k">Instagram</span><a id="shop-ig" href="#" target="_blank" rel="noopener"></a></li>
+          <li id="row-tt" hidden><span class="k">TikTok</span><a id="shop-tt" href="#" target="_blank" rel="noopener"></a></li>
+        </ul>
+      </div>
+
+      <form class="booking" id="booking-form" novalidate>
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" placeholder="e.g. Musa" required>
         </div>
+
+        <div class="field">
+          <label for="f-service">Service</label>
+          <select id="f-service" name="service" required>
+            <option value="">Choose a service</option>
+            <option>Skin fade</option>
+            <option>Low or mid fade</option>
+            <option>Hair design</option>
+            <option>Beard grooming</option>
+            <option>Haircut and beard</option>
+            <option>Colored dyeing</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-when">Day and time <span class="opt">(optional)</span></label>
+          <input id="f-when" name="when" type="text" placeholder="e.g. Saturday afternoon">
+        </div>
+
+        <div class="field">
+          <label for="f-style">Describe the style you want <span class="opt">(optional)</span></label>
+          <textarea id="f-style" name="style" placeholder="e.g. taper with a hard part, low fade with waves"></textarea>
+        </div>
+
+        <div class="field">
+          <label style="display:flex; align-items:flex-start; gap:10px; font-weight:500;">
+            <input type="checkbox" id="f-home" name="home" style="width:20px; height:20px; margin-top:2px; flex-shrink:0;">
+            <span>I'd like this at my location (home service — travel fee depends on distance)</span>
+          </label>
+        </div>
+
+        <div class="field">
+          <label for="f-note">Anything else? <span class="opt">(optional)</span></label>
+          <textarea id="f-note" name="note" placeholder="Address if home service, questions"></textarea>
+        </div>
+
+        <p class="form-hint" id="form-error" role="alert" hidden></p>
+        <button class="btn btn-red" type="submit">Send on WhatsApp</button>
+        <p class="form-hint">You can attach a reference photo once WhatsApp opens.</p>
+      </form>
     </div>
-
-    <div class="portfolio-item">
-        <img src="Cut4.jpg" alt="Josef Blendz haircut">
-        <div class="portfolio-overlay">
-            <h3>Fresh Cut</h3>
-            <p>Sharp & detailed</p>
-        </div>
-    </div>
-
-    <div class="portfolio-item">
-        <img src="Cut5.jpg" alt="Josef Blendz haircut">
-        <div class="portfolio-overlay">
-            <h3>Clean Finish</h3>
-            <p>Professional grooming</p>
-        </div>
-    </div>
-
-    <div class="portfolio-item">
-        <img src="Cut6.jpg" alt="Josef Blendz haircut">
-        <div class="portfolio-overlay">
-            <h3>Josef Blendz</h3>
-            <p>Premium barbering</p>
-        </div>
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section id="about">
-
-    <div class="container">
-
-        <div class="about-grid">
-
-            <div class="about-image"></div>
-
-
-            <div class="about-text">
-
-                <span>About Josef Blendz</span>
-
-                <h2>
-                    More Than A Haircut.
-                </h2>
-
-                <p>
-                    Josef Blendz is built around precision,
-                    consistency and personal style.
-                </p>
-
-                <p>
-                    Every client gets a haircut designed around
-                    their face shape, hair type and preferred look.
-                </p>
-
-                <p>
-                    The goal is simple:
-                    leave the chair looking better than when you arrived.
-                </p>
-
-
-                <div class="stats">
-
-                    <div class="stat">
-
-                        <h3>5+</h3>
-
-                        <p>Years Experience</p>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <h3>100+</h3>
-
-                        <p>Clients</p>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <h3>∞</h3>
-
-                        <p>Style</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     TESTIMONIAL
-========================= -->
-
-<section>
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <span>Client Experience</span>
-
-            <h2>What Clients Say</h2>
-
-        </div>
-
-
-        <div class="testimonial">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p>
-                "The fade was clean, the finishing was sharp
-                and the whole experience was professional."
-            </p>
-
-            <h4>
-                — Happy Client
-            </h4>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section id="contact">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <span>Let's Talk</span>
-
-            <h2>Book Your Cut</h2>
-
-            <p>
-                Ready for a fresh look?
-            </p>
-
-        </div>
-
-
-        <div class="contact-grid">
-
-
-            <div class="contact-info">
-
-                <h2>
-                    Let's get you
-                    looking sharp.
-                </h2>
-
-                <p>
-                    Send a message and let's arrange a suitable
-                    time for your appointment.
-                </p>
-
-
-                <div class="contact-details">
-
-                    <div class="contact-detail">
-
-                        <span>📍</span>
-
-                        <span>
-                            Gombe, Nigeria
-                        </span>
-
-                    </div>
-
-
-                    <div class="contact-detail">
-
-                        <span>📱</span>
-
-                        <span>
-                            WhatsApp Booking
-                        </span>
-
-                    </div>
-
-
-                    <div class="contact-detail">
-
-                        <span>📸</span>
-
-                        <span>
-                            @josefblendz
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <form
-                class="contact-form"
-                onsubmit="sendWhatsApp(event)"
-            >
-
-                <div class="form-group">
-
-                    <label>
-                        Your Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="Enter your name"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Phone Number
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="phone"
-                        placeholder="080..."
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Preferred Service
-                    </label>
-
-                    <input
-                        type="text"
-                        id="service"
-                        placeholder="e.g. Skin Fade"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Message
-                    </label>
-
-                    <textarea
-                        id="message"
-                        placeholder="Tell me your preferred date/time..."
-                    ></textarea>
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="btn btn-primary submit-btn"
-                >
-                    Book Through WhatsApp
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    <p>
-        © 2026 <span>Josef Blendz</span>.
-        All Rights Reserved.
-    </p>
-
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <span>© 2026 Josef Blendz. All rights reserved.</span>
+    <span><a id="footer-ig" href="#" target="_blank" rel="noopener"></a><span id="footer-tt-wrap" hidden> &nbsp;|&nbsp; <a id="footer-tt" href="#" target="_blank" rel="noopener"></a></span></span>
+  </div>
 </footer>
 
-
-<!-- =========================
-     WHATSAPP BUTTON
-========================= -->
-
-<a
-    class="whatsapp"
-    href="https://wa.me/2348012345678"
-    target="_blank"
-    title="Chat on WhatsApp"
->
-    💬
-</a>
-
-
-<!-- =========================
-     JAVASCRIPT
-========================= -->
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <img id="lightbox-img" src="" alt="">
+  <button class="btn btn-outline" type="button" id="lightbox-close">Close</button>
+</dialog>
 
 <script>
+  /* =====================================================
+     EDIT THIS BLOCK. Everything else updates from it.
+     Leave hours or mapsUrl as "" to hide that line.
+     ===================================================== */
+  const SHOP = {
+    whatsapp:  "2348089659040",        // country code + number, no + or spaces
+    instagram: "josef_blendz",
+    tiktok:    "josef.blendz",
+    address:   "Goodluck Ebele Jonathan Rd, Federal Low-Cost, Gombe State",
+    hours:     "Every day, 8am to 10pm",
+    mapsUrl:   "https://maps.app.goo.gl/d1FwnDVPixE5Hw1T8"
+  };
 
-    /* Mobile menu */
+  const enc = encodeURIComponent;
+  const waLink = (text) => `https://wa.me/${SHOP.whatsapp}?text=${enc(text)}`;
 
-    function toggleMenu() {
+  /* WhatsApp buttons */
+  document.querySelectorAll("a[data-wa]").forEach(a => {
+    a.href = waLink("Hi Josef Blendz, I'd like to book a cut.");
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
 
-        const nav =
-            document.querySelector(".nav-links");
-
-        nav.classList.toggle("active");
-
-    }
-
-
-    /* Close mobile menu after clicking */
-
-    document.querySelectorAll(".nav-links a").forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            document
-                .querySelector(".nav-links")
-                .classList.remove("active");
-
-        });
-
+  /* Shop details */
+  document.getElementById("shop-address").textContent = SHOP.address;
+  document.getElementById("hero-place").textContent = SHOP.address + (SHOP.hours ? ". " + SHOP.hours + "." : "");
+  if (SHOP.hours) {
+    document.getElementById("row-hours").hidden = false;
+    document.getElementById("shop-hours").textContent = SHOP.hours;
+  }
+  if (SHOP.mapsUrl) {
+    document.getElementById("row-map").hidden = false;
+    document.getElementById("shop-map").href = SHOP.mapsUrl;
+  }
+  if (SHOP.tiktok) {
+    document.getElementById("row-tt").hidden = false;
+    document.getElementById("footer-tt-wrap").hidden = false;
+    ["shop-tt", "footer-tt"].forEach(id => {
+      const el = document.getElementById(id);
+      el.href = "https://www.tiktok.com/@" + SHOP.tiktok;
+      el.textContent = "@" + SHOP.tiktok;
     });
+  }
+  ["shop-ig", "footer-ig"].forEach(id => {
+    const el = document.getElementById(id);
+    el.href = "https://instagram.com/" + SHOP.instagram;
+    el.textContent = "@" + SHOP.instagram;
+  });
 
+  /* Mobile menu */
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.getElementById("site-nav");
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  });
+  nav.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      nav.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
+    }
+  });
 
-    /* WhatsApp booking */
+  /* Before / after slider — supports several transformations.
+     To add a new one: photograph the 3 angles before and after the cut, name the
+     files "transformations/<id>-before-<angle>.jpg" and "...-after-<angle>.jpg"
+     (angle is front, side or back), then add one line below. */
+  const TRANSFORMATIONS = [
+    { id: "look1", label: "Look 1", angles: ["front", "side", "back"] },
+    { id: "look2", label: "Look 2", angles: ["front", "side", "back"] },
+    { id: "look3", label: "Look 3", angles: ["front", "side"] },
+    { id: "look4", label: "Look 4", angles: ["front", "side"] },
+    // Add more the same way. List only the angles you actually have photos for.
+  ];
 
-    function sendWhatsApp(event) {
+  const ba = document.getElementById("ba");
+  const baCases = document.getElementById("ba-cases");
+  const baAngles = document.getElementById("ba-angles");
+  const baStage = document.getElementById("ba-stage");
+  const baRange = document.getElementById("ba-range");
+  const baBefore = document.getElementById("ba-before");
+  const baAfter = document.getElementById("ba-after");
+  const angleLabels = { front: "Front", side: "Side", back: "Back" };
+  const angleAlt = { front: "front view", side: "side view", back: "back view" };
+  let currentCase = TRANSFORMATIONS[0];
+  let currentAngle = currentCase ? currentCase.angles[0] : null;
 
-        event.preventDefault();
+  function renderBaImages() {
+    if (!currentCase || !currentAngle) return;
+    const base = `transformations/${currentCase.id}`;
+    baBefore.src = `${base}-before-${currentAngle}.png`;
+    baAfter.src = `${base}-after-${currentAngle}.png`;
+    baBefore.alt = `Before: ${angleAlt[currentAngle]}`;
+    baAfter.alt = `After: finished cut, ${angleAlt[currentAngle]}`;
+    baRange.value = 50;
+    baStage.style.setProperty("--pos", "50%");
+  }
 
-        const name =
-            document.getElementById("name").value;
+  function renderAngleTabs() {
+    baAngles.innerHTML = "";
+    if (!currentCase) return;
+    currentCase.angles.forEach((a, i) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "ba-tab";
+      btn.textContent = angleLabels[a];
+      btn.setAttribute("aria-pressed", String(a === currentAngle));
+      btn.addEventListener("click", () => {
+        currentAngle = a;
+        baAngles.querySelectorAll(".ba-tab").forEach(t => t.setAttribute("aria-pressed", String(t === btn)));
+        renderBaImages();
+      });
+      baAngles.appendChild(btn);
+    });
+  }
 
-        const phone =
-            document.getElementById("phone").value;
-
-        const service =
-            document.getElementById("service").value;
-
-        const message =
-            document.getElementById("message").value;
-
-
-        const text =
-            `Hello Josef Blendz 👋
-
-I'd like to book an appointment.
-
-Name: ${name}
-Phone: ${phone}
-Service: ${service}
-
-Message:
-${message}`;
-
-
-        const whatsappNumber =
-            "2348089659040";
-
-
-        const url =
-            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
-
-
-        window.open(url, "_blank");
-
+  if (TRANSFORMATIONS.length === 0) {
+    ba.hidden = true;
+  } else {
+    /* Build one case button per transformation (only show the row if there's more than one) */
+    if (TRANSFORMATIONS.length > 1) {
+      TRANSFORMATIONS.forEach((c, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "ba-tab";
+        btn.textContent = c.label;
+        btn.setAttribute("aria-pressed", String(i === 0));
+        btn.addEventListener("click", () => {
+          currentCase = c;
+          currentAngle = c.angles[0];
+          baCases.querySelectorAll(".ba-tab").forEach(t => t.setAttribute("aria-pressed", String(t === btn)));
+          renderAngleTabs();
+          renderBaImages();
+        });
+        baCases.appendChild(btn);
+      });
     }
 
-</script>
+    baRange.addEventListener("input", () => baStage.style.setProperty("--pos", baRange.value + "%"));
 
+    renderAngleTabs();
+    renderBaImages();
+  }
+
+  /* Gallery filter */
+  const shots = document.querySelectorAll(".shot");
+  document.querySelectorAll(".gf-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".gf-tab").forEach(t => t.setAttribute("aria-pressed", String(t === tab)));
+      const f = tab.dataset.filter;
+      let anyVisible = false;
+      shots.forEach(s => {
+        const show = f === "all" || s.dataset.category === f;
+        s.classList.toggle("gf-hide", !show);
+        if (show) anyVisible = true;
+      });
+      document.getElementById("gallery-empty").hidden = anyVisible;
+    });
+  });
+
+  /* Photo viewer */
+  const box = document.getElementById("lightbox");
+  const boxImg = document.getElementById("lightbox-img");
+  document.querySelectorAll(".shot").forEach(btn => {
+    btn.addEventListener("click", () => {
+      boxImg.src = btn.dataset.full;
+      boxImg.alt = btn.querySelector("img").alt;
+      box.showModal();
+    });
+  });
+  document.getElementById("lightbox-close").addEventListener("click", () => box.close());
+  box.addEventListener("click", (e) => { if (e.target === box) box.close(); });
+
+  /* Booking form -> WhatsApp */
+  const form = document.getElementById("booking-form");
+  const err = document.getElementById("form-error");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const service = form.service.value;
+    if (!name || !service) {
+      err.hidden = false;
+      err.textContent = !name ? "Enter your name so I know who to reply to." : "Choose a service.";
+      (!name ? form.name : form.service).focus();
+      return;
+    }
+    err.hidden = true;
+
+    let msg = `Hi Josef Blendz, my name is ${name}. I'd like to book: ${service}.`;
+    if (form.style.value.trim()) msg += `\nStyle: ${form.style.value.trim()}`;
+    if (form.home.checked) msg += `\nThis would be a home service (please send me a distance fee quote).`;
+    if (form.when.value.trim()) msg += `\nPreferred day and time: ${form.when.value.trim()}`;
+    if (form.note.value.trim()) msg += `\nNote: ${form.note.value.trim()}`;
+
+    window.open(waLink(msg), "_blank", "noopener");
+  });
+</script>
 </body>
 </html>
